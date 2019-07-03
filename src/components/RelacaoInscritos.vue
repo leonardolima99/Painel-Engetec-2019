@@ -30,7 +30,7 @@
     },
     methods: {
       async listar() {
-        var res = await fetch('http://localhost:3000/inscricoes', {
+        var res = await fetch('https://engetec-api.herokuapp.com/inscricoes', {
           method: 'GET',
           mode: 'cors'
         })

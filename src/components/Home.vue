@@ -2,7 +2,7 @@
 	<div class="page">
     <h2 class="article-title" @focusout="atualizar" contenteditable="true" spellcheck="false" v-html="title"></h2>
 
-    <img class="article-img" src="http://lorempixel.com/400/400/nightlife/">
+    <img class="article-img" src="https://lorempixel.com/400/400/nightlife/">
     
     <div class="article-content" @focusout="atualizar" contenteditable="true" spellcheck="false" v-html="content">
     </div>

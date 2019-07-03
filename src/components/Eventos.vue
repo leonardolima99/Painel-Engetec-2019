@@ -32,12 +32,12 @@ export default {
   data() {
     return {
       eventos: [],
-      link: 'http://lorempixel.com/300/200/business/'
+      link: 'https://lorempixel.com/300/200/business/'
     }
   },
   methods: {
     async listar() {
-      var res = await fetch('http://localhost:3000/eventos', {
+      var res = await fetch('https://engetec-api.herokuapp.com/eventos', {
         method: 'GET',
         mode: 'cors'
       })

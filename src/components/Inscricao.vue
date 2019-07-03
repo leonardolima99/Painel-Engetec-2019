@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     async inscrever() {
-      var res = await fetch('http://localhost:3000/inscricoes/new', {
+      var res = await fetch('https://engetec-api.herokuapp.com/inscricoes/new', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -73,7 +73,7 @@ export default {
       console.log(res)
     },
     async listar() {
-      var res = await fetch('http://localhost:3000/inscricoes', {
+      var res = await fetch('https://engetec-api.herokuapp.com/inscricoes', {
         mode: 'cors'
       })
       res = await res.json()

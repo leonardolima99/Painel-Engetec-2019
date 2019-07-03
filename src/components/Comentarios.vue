@@ -3,7 +3,7 @@
     <hr class="divisor">
     <h2> Comentários </h2>
     <div class="user">
-      <img class="user-img1" src="http://lorempixel.com/50/50/nightlife/" width="50">
+      <img class="user-img1" src="https://lorempixel.com/50/50/nightlife/" width="50">
       <div class="comentario-post">
         
         <!-- <span class="placeholder" v-show="visible">Comentário...</span> -->
@@ -20,7 +20,7 @@
     </div>
     <div class="comentario-container" v-for="(comentario, index) of comentarios" :key="index">
       <!-- <hr class="divisor"> -->
-      <img class="user-img2" src="http://lorempixel.com/50/50/people/" width="50">
+      <img class="user-img2" src="https://lorempixel.com/50/50/people/" width="50">
       <div class="comentario-group">
         <span class="comentario-nome">{{ comentario.user_name }}</span> | 
         <small>{{ new Date(comentario.date).toLocaleString() }}</small>
@@ -32,7 +32,7 @@
           <button @click="showReply(index)">Responder</button>
         </div>
         <div class="reply">
-          <img class="user-img1" src="http://lorempixel.com/50/50/people/" width="50">
+          <img class="user-img1" src="https://lorempixel.com/50/50/people/" width="50">
           <div class="comentario-post">
             
             <!-- <span class="placeholder" v-show="visible">Comentário...</span> -->
@@ -48,7 +48,7 @@
           </div>
           <div class="comentario-container" v-for="(comentario, index) of comentarios" :key="index">
             <hr class="divisor">
-            <img class="user-img2" src="http://lorempixel.com/50/50/food/" width="50">
+            <img class="user-img2" src="https://lorempixel.com/50/50/food/" width="50">
             <div class="comentario-group">
               <span class="comentario-nome">{{ comentario.user_name }}</span> | 
               <small>{{ new Date(comentario.date).toLocaleString() }}</small>
@@ -60,7 +60,7 @@
                 <button @click="showReply(index)">Responder</button>
               </div>
               <div class="reply">
-                <img class="user-img1" src="http://lorempixel.com/50/50/people/" width="50">
+                <img class="user-img1" src="https://lorempixel.com/50/50/people/" width="50">
                 <div class="comentario-post">
                   
                   <!-- <span class="placeholder" v-show="visible">Comentário...</span> -->
