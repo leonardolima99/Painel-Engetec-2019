@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     async listar() {
-      let res = await fetch('http://leonardo-pc:3000/eventos', {
+      let res = await fetch('https://engetec-api.herokuapp.com/eventos', {
         method: 'GET',
         mode: 'cors'
       })
@@ -77,7 +77,7 @@ export default {
       console.log(i)
       
       try {
-        let res = await fetch(`http://leonardo-pc:3000/eventos/${id}`, {
+        let res = await fetch(`https://engetec-api.herokuapp.com/eventos/${id}`, {
           method: 'PUT',
           mode: 'cors',
           headers: {
@@ -99,7 +99,7 @@ export default {
     },
     async apagar(i, id) {
       try {
-        let res = await fetch(`http://leonardo-pc:3000/eventos/${id}`, {
+        let res = await fetch(`https://engetec-api.herokuapp.com/eventos/${id}`, {
           method: 'DELETE',
           mode: 'cors'
         })

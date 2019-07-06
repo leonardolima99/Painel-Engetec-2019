@@ -53,7 +53,7 @@
         console.log(`${name}\n${local}\n${date}\n${description}`)
 
         try {
-          let res = await fetch('http://leonardo-pc:3000/eventos', {
+          let res = await fetch('https://engetec-api.herokuapp.com/eventos', {
             method: 'POST',
             mode: 'cors',
             headers: {
