@@ -3,47 +3,115 @@
     <h2>Eventos</h2>
     <div class="evento" v-for="(evento, index) of eventos" :key="index">
       <div class="img-evento">
-        <img :src="link + index">
+        <img :src="link">
       </div>
       <div class="detalhes">
-        <p><strong>Nome: </strong> {{ evento.name }}</p>
+        <p>
+          <strong>Nome: </strong>
+          <span class="name" contenteditable="true" spellcheck="false">
+            {{ evento.name }}
+          </span>
+        </p>
         <p>
           <strong>Local: </strong>
-          {{ evento.local }}
+          <span class="local" contenteditable="true" spellcheck="false">
+            {{ evento.local }}
+          </span>
         </p>
         <p>
           <strong>Data: </strong>
-          {{ new Date(evento.date).toLocaleDateString() }} | 
-          {{ new Date(evento.date).toLocaleTimeString() }}
+          <span class="date" contenteditable="true" spellcheck="false">
+            <!-- {{ new Date(evento.date).toLocaleDateString() }} | 
+            {{ new Date(evento.date).toLocaleTimeString() }} -->
+            {{ evento.date }}
+          </span>
         </p>
         <p class="descricao">
           <strong>Descrição: </strong>
-          {{ evento.description }}
+          <span class="description" contenteditable="true" spellcheck="false">
+            {{ evento.description }}
+          </span>
         </p>
       </div>
+      <button @click.prevent="atualizar(index, evento._id)">Atualizar</button>
+      <button @click.prevent="apagar(index, evento._id)">Apagar</button>
     </div>
-
+    <div id="novo" v-for="vez of vezes">
+      <novo-evento />
+    </div>
+    <button @click.prevent="addNovo">Adicionar Evento</button>
   </div>
 </template>
 
 <script>
+import NovoEvento from './NovoEvento'
 export default {
   name: 'eventos',
+  components: {
+    NovoEvento
+  },
   data() {
     return {
       eventos: [],
-      link: 'https://lorempixel.com/300/200/business/'
+      link: 'https://placeimg.com/300/200/any',
+      vezes: 0
     }
   },
   methods: {
     async listar() {
-      var res = await fetch('https://engetec-api.herokuapp.com/eventos', {
+      let res = await fetch('http://leonardo-pc:3000/eventos', {
         method: 'GET',
         mode: 'cors'
       })
       res = await res.json()
       console.log(res);
       this.eventos = res
+    },
+    async atualizar(i, id) {
+      let name = document.querySelectorAll('span.name')[i].innerText
+      let local = document.querySelectorAll('span.local')[i].innerText
+      let date = document.querySelectorAll('span.date')[i].innerText
+      let description = document.querySelectorAll('span.description')[i].innerText
+      this.eventos[i] = { name, local, date, description }
+      console.log(this.eventos[i])
+      console.log(i)
+      
+      try {
+        let res = await fetch(`http://leonardo-pc:3000/eventos/${id}`, {
+          method: 'PUT',
+          mode: 'cors',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            "name": this.eventos[i].name,
+            "local": this.eventos[i].local,
+            "date": this.eventos[i].date,
+            "description": this.eventos[i].description,
+          })
+        })
+        console.log(await res.json())
+      } catch(e) {
+        console.log(e)
+      }
+
+    },
+    async apagar(i, id) {
+      try {
+        let res = await fetch(`http://leonardo-pc:3000/eventos/${id}`, {
+          method: 'DELETE',
+          mode: 'cors'
+        })
+        console.log(await res.json())
+        
+      } catch(e) {
+        console.log(e)
+      }
+    },
+    async addNovo() {
+      this.vezes += 1
+      // this.add_novo = true
     }
   },
   mounted() {

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './components/Home.vue'
 import Postagens from './components/Postagens.vue'
+import Eventos from './components/Eventos.vue'
 import Error404 from './components/Error404.vue'
 
 Vue.use(Router)
@@ -12,7 +13,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: Home
     },
     {
@@ -21,14 +22,9 @@ export default new Router({
       component: Postagens
     },
     {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/',
-      name: 'home',
-      component: Home
+      path: '/eventos',
+      name: 'Eventos',
+      component: Eventos
     },
     {
       path: '/*',
