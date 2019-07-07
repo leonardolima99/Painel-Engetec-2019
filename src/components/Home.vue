@@ -7,31 +7,31 @@
     <div class="article-content" @focusout="atualizar" contenteditable="true" spellcheck="false" v-html="content">
     </div>
     <div class="toolbar" @click="atualizar">
-      <button class="btn" @click="formatDoc('bold')">
+      <button class="btn" @click.prevent="formatDoc('bold')">
         <i class="material-icons">format_bold</i>
       </button>
-      <button class="btn" @click="formatDoc('italic')">
+      <button class="btn" @click.prevent="formatDoc('italic')">
         <i class="material-icons">format_italic</i>
       </button>
-      <button class="btn" @click="formatDoc('underline')">
+      <button class="btn" @click.prevent="formatDoc('underline')">
         <i class="material-icons">format_underlined</i>
       </button>
       <!-- <button class="btn" @click="formatDoc('strikeThrough')">
         <i class="material-icons">strikethrough_s</i>
       </button> -->
-      <button class="btn" @click="formatDoc('justifyLeft')">
+      <button class="btn" @click.prevent="formatDoc('justifyLeft')">
         <i class="material-icons">format_align_left</i>
       </button>
-      <button class="btn" @click="formatDoc('justifyCenter')">
+      <button class="btn" @click.prevent="formatDoc('justifyCenter')">
         <i class="material-icons">format_align_center</i>
       </button>
-      <button class="btn" @click="formatDoc('justifyRight')">
+      <button class="btn" @click.prevent="formatDoc('justifyRight')">
         <i class="material-icons">format_align_right</i>
       </button>
-      <button class="btn" @click="formatDoc('justifyFull')">
+      <button class="btn" @click.prevent="formatDoc('justifyFull')">
         <i class="material-icons">format_align_justify</i>
       </button>
-      <button class="btn btn-primary" @click="postar">
+      <button class="btn btn-primary" @click.prevent="postar">
         <i class="material-icons">save</i>
       </button>
     </div>

@@ -95,7 +95,6 @@ export default {
       } catch(e) {
         console.log(e)
       }
-
     },
     async apagar(i, id) {
       try {
@@ -104,7 +103,7 @@ export default {
           mode: 'cors'
         })
         console.log(await res.json())
-        
+        this.eventos.splice(i,1)
       } catch(e) {
         console.log(e)
       }
