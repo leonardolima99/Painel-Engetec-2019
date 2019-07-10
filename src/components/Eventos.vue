@@ -3,7 +3,9 @@
     <h2>Eventos</h2>
     <div class="evento" v-for="(evento, index) of eventos" :key="index">
       <div class="img-evento">
-        <img :src="link">
+        <img :src="evento.image" width="300" height="200">
+        <input type="file" accept="image/png, image/jpeg" :id="'img-' + index" class="img-upload" @input="toBase64(index)">
+        <label class="lb-img-upload" :for="'img-' + index">Trocar</label>
       </div>
       <div class="detalhes">
         <p>
@@ -37,7 +39,7 @@
       <button @click.prevent="apagar(index, evento._id)">Apagar</button>
     </div>
     <div id="novo" v-for="vez of vezes">
-      <novo-evento />
+      <novo-evento :index="vez"/>
     </div>
     <button @click.prevent="addNovo">Adicionar Evento</button>
   </div>
@@ -53,11 +55,23 @@ export default {
   data() {
     return {
       eventos: [],
-      link: 'https://placeimg.com/300/200/any',
       vezes: 0
     }
   },
   methods: {
+    toBase64(i) {
+      var image = document.querySelectorAll('input[type="file"]')[i].files[0]
+      console.log(image)
+      // console.log(image)
+      let reader = new FileReader()
+      reader.onload = async (e) => {
+        // console.log(e.target.result)
+        console.log(this.eventos[i].image)
+        this.eventos[i].image = await e.target.result
+
+      }
+      reader.readAsDataURL(image)
+    },
     async listar() {
       let res = await fetch('https://engetec-api.herokuapp.com/eventos', {
         method: 'GET',
@@ -72,9 +86,10 @@ export default {
       let local = document.querySelectorAll('span.local')[i].innerText
       let date = document.querySelectorAll('span.date')[i].innerText
       let description = document.querySelectorAll('span.description')[i].innerText
-      this.eventos[i] = { name, local, date, description }
-      console.log(this.eventos[i])
-      console.log(i)
+      let image = this.eventos[i].image
+      this.eventos[i] = { name, local, date, description, image }
+      // console.log(this.eventos[i])
+      // console.log(i)
       
       try {
         let res = await fetch(`https://engetec-api.herokuapp.com/eventos/${id}`, {
@@ -89,6 +104,7 @@ export default {
             "local": this.eventos[i].local,
             "date": this.eventos[i].date,
             "description": this.eventos[i].description,
+            "image": this.eventos[i].image
           })
         })
         console.log(await res.json())
@@ -110,6 +126,7 @@ export default {
     },
     async addNovo() {
       this.vezes += 1
+
       // this.add_novo = true
     }
   },
@@ -128,6 +145,27 @@ export default {
   .img-evento {
     float: left;
     margin-right: 10px;
+  }
+  .img-upload {
+    width: 0;
+    height: 0;
+  }
+  .img-evento:hover .lb-img-upload {
+    display: block;
+    cursor: pointer;
+  }
+  .lb-img-upload {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    line-height: 200px;
+    font-size: 60px;
+    font-weight: bold;
+    color: #e6e6e6;
+    display: none;
+    margin-top: -204px;
+    background-color: #00000080;
   }
   .detalhes {
     line-height: 150%;
