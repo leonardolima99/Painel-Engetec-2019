@@ -162,7 +162,7 @@
     max-width: 1000px;
     min-height: calc(100vh - 400px);
     width: 990px;
-    padding: 50px 30px;
+    padding: 50px 15px;
     border-radius: 5px;
     margin: 400px auto 0;
     /*box-shadow: 0 0 10px 2px #33333370;*/
@@ -322,7 +322,7 @@
     .main {
       margin-top: 390px;
       width: 100%;
-      padding: 40px 30px;
+      padding: 40px 15px;
     }
   }
 </style>

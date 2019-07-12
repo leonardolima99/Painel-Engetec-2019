@@ -98,7 +98,7 @@
   }
   .article-content {
     line-height: 160%;
-    max-width: 930px;
+    max-width: 960px;
     width: 100%;
     min-height: 100px;
     border: 2px dashed #00000050;
