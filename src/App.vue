@@ -325,5 +325,17 @@
       padding: 40px 15px;
     }
   }
+  .mb-1 {
+    margin-bottom: 5px;
+  }
+  .mb-2 {
+    margin-bottom: 10px;
+  }
+  .mb-3 {
+    margin-bottom: 15px;
+  }
+  .mb-4 {
+    margin-bottom: 20px;
+  }
 </style>
 
