@@ -1,16 +1,16 @@
 <template>
   <div class="galeria">
     <input type="file" accept="image/*" multiple @input="toBase64">
-    <button @click.prevent="enviar" :disabled="btn_disabled">Enviar</button>
+    <button @click.prevent="enviar" :disabled="btn_disabled" class="btn btn-primary">Enviar</button>
     <span>{{ ja_enviado }} / {{ env_imagens.length }}</span>
-    <button @click.prevent="deleteAll">Apagar tudo</button>
+    <button @click.prevent="deleteAll" class="btn">Apagar tudo</button>
     <div id="myModal" class="modal" v-if="show_modal">
 
       <!-- Modal content -->
       <div class="modal-content">
         <h3 class="mb-2">Imagens selecionadas</h3>
         <span class="close" @click.prevent="closeModal">&times;</span>
-        <div class="line" v-for="data of modal_data" :class="{ 'ok': data.ok > 0, 'not': data.ok < 0 }">
+        <div class="line" v-for="data of modal_data" :class="{ 'ok': data.ok > 0, 'not': data.ok < 0, 'loading': data.ok == 0 }">
           <span class="name">
             {{ data.name }}
           </span>
@@ -161,7 +161,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .imagens {
     column-count: 4;
     column-gap: 1em;
@@ -230,17 +230,38 @@
   }
   .line {
     display: flex;
+    position: relative;
+    /*position: absolute;*/
     justify-content: space-between;
     padding: 10px;
     margin: 6px 0;
     background-color: #e1e1e130;
-    border-radius: 7px;
-    border: 1px solid #e1e1e1;
+    /*border-radius: 7px;*/
+    border: inset 1px solid #e1e1e1;
+
+  }
+  .line.loading::after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    /*border-radius: 7px;*/
+    background: repeating-linear-gradient(-45deg,
+      white 0%,
+      white 25%,
+      lightblue 25%,
+      lightblue 50%);
+    background-size: 40px 40px;
+    /*transform: translateX(-20%) translateY(-20%) rotate(-45deg);*/
+    animation: animate 1s linear infinite;
   }
   .line.ok {
     color: green;
     background-color: #00ff0010;
-    border: 1px solid #00ff0090;
+    /*border: 1px solid #00ff0090;*/
+    box-shadow: inset 0 0 0 2px #00ff0090; 
     transition: .4s;
   }
   .line.not {
@@ -248,6 +269,23 @@
     background-color: #ff000010;
     border: 1px solid #ff000090;
     transition: .4s;
+  }
+  @keyframes animate {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: 40px 40px;
+    }
+  }
+  .line .name {
+    float: left;
+    max-width: 74%;
+  }
+  .line .size {
+    /*margin-left: 20px;*/
+    max-width: 26%;
   }
   /* The Close Button */
   .close {
@@ -266,4 +304,35 @@
     text-decoration: none;
     cursor: pointer;
   } 
+  .btn {
+    height: 42px;
+    padding: 0 20px;
+    font-size: 16px;
+    border: 0;
+    margin: 10px;
+    border-radius: 7px;
+    background-color: #d2d2d240;
+    /*background-color: #f6f6f6;*/
+    cursor: pointer;
+    box-shadow: 0 1px 2px 1px #00000020;
+  }
+/*  .btn:hover {
+    background-color: #e1e1e1;
+  }*/
+  .btn:active {
+    /*background-color: #f5f5f5;*/
+    background-color: #d2d2d250;
+    box-shadow: 0 0 2px 1px #00000020;
+  }
+  .btn-primary {
+    background-color: #fc9a22;
+    color: #fff;
+  }
+  .btn-primary[disabled] {
+    background-color: #fc9a2280;
+    color: #fff;
+  }
+  .btn-primary:active {
+    background-color: #ed8200;
+  }
 </style>

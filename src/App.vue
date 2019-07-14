@@ -275,12 +275,12 @@
       display: none;
     }
     .container-navbar {
-      background: #33333320;
+      background: #33333380;
       box-shadow: 0 2px 5px #33333380;
     }
     .navbar {
       position: absolute;
-      background: #33333320;
+      background: #33333380;
       box-shadow: 0 0 0 transparent;
       width: 100%;
       height: 100vh;
@@ -289,6 +289,7 @@
       transition: .4s;
     }
     .navbar.active {
+      position: fixed;
       left: 0;
       opacity: 1;
     }

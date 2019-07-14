@@ -7,31 +7,31 @@
     <div class="article-content" @focusout="atualizar" contenteditable="true" spellcheck="false" v-html="content">
     </div>
     <div class="toolbar" @click="atualizar">
-      <button class="btn" @click.prevent="formatDoc('bold')">
+      <button class="btn btn-flat" @click.prevent="formatDoc('bold')">
         <i class="material-icons">format_bold</i>
       </button>
-      <button class="btn" @click.prevent="formatDoc('italic')">
+      <button class="btn btn-flat" @click.prevent="formatDoc('italic')">
         <i class="material-icons">format_italic</i>
       </button>
-      <button class="btn" @click.prevent="formatDoc('underline')">
+      <button class="btn btn-flat" @click.prevent="formatDoc('underline')">
         <i class="material-icons">format_underlined</i>
       </button>
       <!-- <button class="btn" @click="formatDoc('strikeThrough')">
         <i class="material-icons">strikethrough_s</i>
       </button> -->
-      <button class="btn" @click.prevent="formatDoc('justifyLeft')">
+      <button class="btn btn-flat" @click.prevent="formatDoc('justifyLeft')">
         <i class="material-icons">format_align_left</i>
       </button>
-      <button class="btn" @click.prevent="formatDoc('justifyCenter')">
+      <button class="btn btn-flat" @click.prevent="formatDoc('justifyCenter')">
         <i class="material-icons">format_align_center</i>
       </button>
-      <button class="btn" @click.prevent="formatDoc('justifyRight')">
+      <button class="btn btn-flat" @click.prevent="formatDoc('justifyRight')">
         <i class="material-icons">format_align_right</i>
       </button>
-      <button class="btn" @click.prevent="formatDoc('justifyFull')">
+      <button class="btn btn-flat" @click.prevent="formatDoc('justifyFull')">
         <i class="material-icons">format_align_justify</i>
       </button>
-      <button class="btn btn-primary" @click.prevent="postar">
+      <button class="btn btn-primary no-border-radius" @click.prevent="postar">
         <i class="material-icons">save</i>
       </button>
     </div>
@@ -88,7 +88,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .page {
     margin-bottom: 50px;
   }
@@ -108,7 +108,7 @@
     width: 100%;
     left: 0;
     bottom: 0;
-    background-color: #f4f4f4;
+    background-color: #f1f1f1;
     height: 40px;
   }
   .toolbar button {
@@ -122,6 +122,7 @@
   }
   .btn {
     height: 34px;
+    line-height: 55px;
     padding: 0 10px;
     border: 0;
     border-radius: 7px;
@@ -137,6 +138,13 @@
     /*background-color: #f5f5f5;*/
     background-color: #d2d2d250;
     box-shadow: 0 0 2px 1px #00000020;
+  }
+  .no-border-radius {
+    border-radius: 0;
+  }
+  .btn-flat {
+    border-radius: 0;
+    box-shadow: none;
   }
   .btn-primary {
     background-color: #fc9a22;
